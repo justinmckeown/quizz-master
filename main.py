@@ -11,7 +11,7 @@ logger.setLevel(logging.DEBUG) #NOTE: minimum logging level - set this to whatev
 stream_handler = logging.StreamHandler() 
 formatter = logging.Formatter('%(asctime)s %(levelname)s :: %(message)s')
 stream_handler.setFormatter(formatter)
-stream_handler.setLevel(logging.INFO) 
+stream_handler.setLevel(logging.DEBUG) 
 file_handler = logging.FileHandler('info.log')
 file_handler.setFormatter(formatter)
 file_handler.setLevel(logging.DEBUG) 
