@@ -109,7 +109,7 @@ class AddCertification(tk.Toplevel):
             success = future.result()
             if success:
                 self.destroy()
-            print(f'SUCCESS: {success}')
+            logger.debug(f'SUCCESS: {success}')
         
         #cert_setup = AddCertificationController((cert_body, cert_name, num_questions, passing_score, exam_time),self.questions_path)
         #cert_setup = threading.Thread(target=cert_setup.add_cert)

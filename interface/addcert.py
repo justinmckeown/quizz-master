@@ -83,7 +83,6 @@ class AddNewCertification(tk.Frame):
     def enable_fields(self, status: str):
         for child in self.winfo_children():
             for c in child.winfo_children():
-                print(c)
                 c.configure(state=status)
         logger.info(f'enable_fields completed')
     

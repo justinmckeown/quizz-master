@@ -12,6 +12,7 @@ from interface.styling import *
 from interface.addcert import *
 import threading
 from interface.addcertificationview import AddCertification
+from interface.testview import *
 
 logger = logging.getLogger()
 
@@ -57,7 +58,7 @@ class RootViewController(tk.Tk):
         self.tree.pack(side=TOP, anchor=N, fill=BOTH, expand=True)
 
         self.add_cert = Button(self.top_frame, text='Add New Cert', command=lambda: self.enable())
-        self.practice = Button(self.top_frame, text='Practice', command= lambda: self._practice_questions())
+        self.practice = Button(self.top_frame, text='Practice Test', command= lambda: self._practice_questions())
         self.learn = Button(self.top_frame, text='Learn Mode')
         self.add_cert.pack(side=RIGHT, padx=5, pady=5)
         self.practice.pack(side=RIGHT, padx=5, pady=5)
@@ -71,8 +72,21 @@ class RootViewController(tk.Tk):
     def _practice_questions(self):
         logger.debug('rootview._practice_questions() called')
         curItem = self.tree.focus()
-        print(self.tree.item(curItem))
-        #TODO: Returns dictionary you need the list of values with key 'values' use first two to get associated questions. 
+        t = self.tree.item(curItem)
+        cert_vals = dict()
+        cert_vals['body'] = t['values'][0]
+        cert_vals['cert'] = t['values'][1]
+        cert_vals['num_questions'] = t['values'][2]
+        cert_vals['pass_score'] = t['values'][3]
+        cert_vals['duration'] = t['values'][4]
+
+        x = self.winfo_rootx()
+        y = self.winfo_rooty()
+        add_cert = CertificationTest(self, cert_vals, x, y)
+        add_cert.grab_set()
+        
+        
+
 
 
 
